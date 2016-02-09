@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.square {
+  border: 1px solid #000;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 96px;
+  height: 100px;
+  justify-content: center;
+  text-align: center;
+  width: 100px;
+
+  strong {
+    text-transform: uppercase;
+    line-height: 100px;
+  }
+
+  &.winner {
+    opacity: .2;
+    transition: opacity .25s ease-in-out;
+  }
+}
+
+.reset {
+  margin: 30px auto 0;
+}
