@@ -3,6 +3,13 @@ import _ from 'lodash';
 import Square from './square';
 import ResetButton from './reset-button';
 
+const initialState = {
+  winner: null,
+  winningSquares: [],
+  turn: null,
+  activeSquares: []
+};
+
 class TicTacToe extends React.Component {
 
   constructor(props) {
@@ -10,12 +17,7 @@ class TicTacToe extends React.Component {
     this.players = ['x', 'o'];
     this.BOARD_LENGTH = 9;
 
-    this.state = {
-      winner: null,
-      winningSquares: [],
-      turn: null,
-      activeSquares: []
-    };
+    this.state = _.merge({}, initialState);
   }
 
   componentDidMount() {
@@ -38,11 +40,8 @@ class TicTacToe extends React.Component {
   }
 
   reset() {
-    this.setState({
-      activeSquares: [],
-      winner: null,
-      winningSquares: []
-    });
+    this.setState({ ...initialState });
+    this.setRandomFirstTurn();
   }
 
   handleSquareClick({ clickedSquare, player = this.state.turn }) {
@@ -83,10 +82,7 @@ class TicTacToe extends React.Component {
   }
 
   getCornerSquares() {
-    return _.chain(0)
-        .range(this.BOARD_LENGTH, 2)
-        .without(4)
-        .value();
+    return [0, 2, 6, 8];
   }
 
   isACornerSquare(position) {
